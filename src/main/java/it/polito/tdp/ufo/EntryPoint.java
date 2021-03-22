@@ -1,18 +1,26 @@
 package it.polito.tdp.ufo;
 
-import javafx.application.Application;
-import static javafx.application.Application.launch;
+
+//import static javafx.application.Application.launch;
+
+import it.polito.tdp.ufo.model.Model;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.application.Application;
 
 
 public class EntryPoint extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scene.fxml"));
+    	Parent root = loader.load();
+    	
+    	FXMLController controller = loader.getController();
+    	Model model = new Model();
+    	controller.setModel(model);
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
